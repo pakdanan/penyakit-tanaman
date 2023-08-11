@@ -1,6 +1,6 @@
-tensorflow-hub==0.11.0
+tensorflow-hub
 numpy
 streamlit
-tensorflow==2.4.1
+tensorflow
 pillow
-matplotlib==3.3.4
+matplotlib
