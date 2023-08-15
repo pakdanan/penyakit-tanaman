@@ -19,11 +19,14 @@ def main():
         st.write(predictions)
         st.pyplot(fig)
 
-def predict(image):
+@st.cache_resource  # 👈 Add the caching decorator
+def load_model():
     classifier_model = "https://tfhub.dev/agripredict/disease-classification/1"
     IMAGE_SHAPE = (300, 300,3)
-    model = tf.keras.Sequential([
-    hub.KerasLayer(classifier_model,input_shape=IMAGE_SHAPE)])
+    return tf.keras.Sequential([hub.KerasLayer(classifier_model,input_shape=IMAGE_SHAPE)])
+    
+def predict(image):
+    model = load_model()
     test_image = image.resize((300,300))
     test_image = preprocessing.image.img_to_array(test_image)
     test_image = test_image / 255.0
